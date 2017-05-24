@@ -1,11 +1,14 @@
 package agents;
 
+import communication.Message;
 import constraints.Constraint;
 import environment.AbstractEnvironment;
+import environment.Environment;
 import environment.Timetable;
 
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -38,5 +41,13 @@ public class RepresentativeAgent extends AbstractAgent {
 
     public void addDelegate(BookingAgent agent) {
         this.delegateIds.add(agent.getId());
+    }
+
+    public void messageBA(Message message, Timetable env) {
+        Optional<AbstractAgent> agent = env.getDelegates().stream()
+                .filter(d -> delegateIds.contains(message.getReceiverId()))
+                .findFirst();
+
+        ((BookingAgent)agent.get()).addMessage(message);
     }
 }

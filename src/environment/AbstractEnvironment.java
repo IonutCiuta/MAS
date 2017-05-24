@@ -4,6 +4,7 @@ import agents.AbstractAgent;
 import agents.Agent;
 import agents.BookingAgent;
 import agents.RepresentativeAgent;
+import cell.Cell;
 import tools.Logger;
 
 import java.util.HashSet;
@@ -13,8 +14,9 @@ import java.util.Set;
  * ionutciuta24@gmail.com on 24.05.2017.
  */
 public abstract class AbstractEnvironment implements Environment, Logger{
-    Set<AbstractAgent> proxies;
-    Set<AbstractAgent> delegates;
+    protected Cell[][] grid;
+    protected Set<AbstractAgent> proxies;
+    protected Set<AbstractAgent> delegates;
 
     public AbstractEnvironment() {
         proxies = new HashSet<>();
@@ -49,5 +51,9 @@ public abstract class AbstractEnvironment implements Environment, Logger{
 
     public Set<AbstractAgent> getDelegates() {
         return delegates;
+    }
+
+    public Cell[][] grid() {
+        return grid;
     }
 }
