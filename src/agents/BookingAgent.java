@@ -28,4 +28,13 @@ public class BookingAgent extends AbstractAgent {
     public void addMessage(Message message) {
         this.messages.add(message);
     }
+
+    @Override
+    public String toString() {
+        return "BookingAgent{" +
+                "proxyId='" + proxyId + '\'' +
+                ", id='" + id + '\'' +
+                ", constraints=" + constraints +
+                '}';
+    }
 }

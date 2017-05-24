@@ -11,21 +11,21 @@ import java.util.Set;
  * ionutciuta24@gmail.com on 24.05.2017.
  */
 public class Room {
-    private int id;
+    private String id;
     private Set<Equipment> equipments;
     private int size;
 
-    public Room(int id, int size) {
+    public Room(String id, int size) {
         this.id = id;
         this.size = size;
         this.equipments = new HashSet<>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

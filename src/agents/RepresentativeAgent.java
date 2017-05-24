@@ -50,4 +50,12 @@ public class RepresentativeAgent extends AbstractAgent {
 
         ((BookingAgent)agent.get()).addMessage(message);
     }
+
+    @Override
+    public String toString() {
+        return "RepresentativeAgent{" +
+                "id='" + id + '\'' +
+                ", constraints=" + constraints +
+                '}';
+    }
 }
