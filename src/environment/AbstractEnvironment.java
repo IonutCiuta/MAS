@@ -7,6 +7,7 @@ import agents.RepresentativeAgent;
 import cell.Cell;
 import tools.Logger;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,5 +56,13 @@ public abstract class AbstractEnvironment implements Environment, Logger{
 
     public Cell[][] grid() {
         return grid;
+    }
+
+    public Cell cell(int x, int y) {
+        return grid[x][y];
+    }
+
+    public void showGrid() {
+        Arrays.stream(grid).forEach(row -> Arrays.stream(row).forEach(System.out::println));
     }
 }

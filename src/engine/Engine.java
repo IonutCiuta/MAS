@@ -21,6 +21,10 @@ public class Engine {
         timetable.setStudentGroupCount(3);
         timetable.setTeachersCount(3);
         initCourseCount(2);
+        timetable.setup();
+        timetable.showProxies();
+        timetable.showDelegates();
+        timetable.showGrid();
     }
 
     private static void initCourseCount(int defaultCourseCountPerDay) {
@@ -37,8 +41,8 @@ public class Engine {
     }
 
     public static void main(String[] args) {
-        timetable.setup();
-        timetable.showProxies();
-        timetable.showDelegates();
+        while(timetable.finished()) {
+            timetable.step();
+        }
     }
 }

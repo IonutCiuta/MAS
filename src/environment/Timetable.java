@@ -8,6 +8,7 @@ import cell.Room;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * ionutciuta24@gmail.com on 24.05.2017.
@@ -70,6 +71,8 @@ public class Timetable extends AbstractEnvironment {
 
             proxies.add(ra);
         }
+
+        randomizeDelegatesOnGrid();
     }
 
     public int getDayCount() {
@@ -126,5 +129,26 @@ public class Timetable extends AbstractEnvironment {
 
     public void showDelegates() {
         log(delegates.toString());
+    }
+
+    public void randomizeDelegatesOnGrid() {
+        Random random = new Random();
+
+        delegates.stream().forEach(a -> {
+            int x = random.nextInt(timeSlots);
+            int y = random.nextInt(dayCount * roomCount);
+            grid[x][y].addVisitingAgent(a);
+        });
+    }
+
+    @Override
+    public void step() {
+
+    }
+
+    @Override
+    public boolean finished() {
+        //TODO: replace
+        return false;
     }
 }

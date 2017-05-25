@@ -1,11 +1,10 @@
 package cell;
 
+import agents.AbstractAgent;
 import agents.BookingAgent;
-import tools.Logger;
+import environment.AbstractEnvironment;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,14 +17,14 @@ public class Cell {
     private Room room;
 
     /* Functional properties */
-    private BookingAgent occupyingAgent;
-    private Set<BookingAgent> visitingAgents;
+    private String occupyingAgentId;
+    private Set<String> visitingAgentsIds;
 
     public Cell(int day, int timeslot, Room room) {
         this.day = day;
         this.timeslot = timeslot;
         this.room = room;
-        this.visitingAgents = new HashSet<>();
+        this.visitingAgentsIds = new HashSet<>();
     }
 
     public int getDay() {
@@ -52,31 +51,41 @@ public class Cell {
         this.room = room;
     }
 
-    public BookingAgent getOccupyingAgent() {
-        return occupyingAgent;
+    public String getOccupyingAgentId() {
+        return occupyingAgentId;
     }
 
-    public void setOccupyingAgent(BookingAgent occupyingAgent) {
-        this.occupyingAgent = occupyingAgent;
+    public void setOccupyingAgentId(BookingAgent occupyingAgent) {
+        this.occupyingAgentId = occupyingAgent.getId();
     }
 
-    public Set<BookingAgent> getVisitingAgents() {
-        return visitingAgents;
+    public Set<String> getVisitingAgentsIds() {
+        return visitingAgentsIds;
     }
 
-    public void setVisitingAgents(Set<BookingAgent> visitingAgents) {
-        this.visitingAgents = visitingAgents;
+    public void setVisitingAgentsIds(Set<String> visitingAgentsIds) {
+        this.visitingAgentsIds = visitingAgentsIds;
     }
+
+    public void addVisitingAgent(AbstractAgent agent) { this.visitingAgentsIds.add(agent.getId()); }
 
     public boolean isOccupied() {
-        return this.occupyingAgent != null;
+        return this.occupyingAgentId != null;
     }
 
     @Override
     public String toString() {
-        return "Cell: " + "day=" + day + ", timeslot=" + timeslot +
-                "\nroom: "           + room +
-                "\noccupyingAgent: " + occupyingAgent +
-                "\nvisitingAgents: " + visitingAgents;
+        return  "Cell: " +
+                "\n\tDay:"                + day +
+                "\n\tTimeslot: "          + getPretyStlot() +
+                "\n\t"                    + room +
+                "\n\tOccupyingAgentId: "  + occupyingAgentId +
+                "\n\tVisitingAgentsIds: " + visitingAgentsIds +
+                "\n";
+    }
+
+    /* from 8000 - 18000*/
+    private String getPretyStlot() {
+        return (800 + 200*timeslot) + " - " + (800 + 200*(timeslot+1));
     }
 }
